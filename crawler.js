@@ -9,8 +9,8 @@ const url = process.argv[2] || "https://www.google.com";
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
-  // Open a new page
-  const page = await browser.newPage();
+  // Use the first tab. Open a new window.
+  const [page] = await browser.pages();
 
   // Go to Google
   await page.goto(url);
