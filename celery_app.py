@@ -14,11 +14,11 @@ NODE_BIN = "/usr/local/bin/node"  # or: shutil.which("node")
 CRAWLER = os.path.join(os.path.dirname(__file__), "crawler.js")
 
 @app.task(acks_late=True, soft_time_limit=180, time_limit=210)
-def run_puppeteer(url, uid):
+def run_puppeteer(url, port_num):
     try:
         # Stream stdout as it runs to avoid large buffers; capture only on error
         proc = subprocess.run(
-            [NODE_BIN, CRAWLER, url, str(uid)],
+            [NODE_BIN, CRAWLER, url, str(port_num)],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,

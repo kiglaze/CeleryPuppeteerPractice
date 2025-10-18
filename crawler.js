@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const url = process.argv[2] || "https://www.google.com";
+const port_num = process.argv[3] || "8082";
 
 (async () => {
   // Launch the browser
@@ -13,9 +14,9 @@ const url = process.argv[2] || "https://www.google.com";
   const [page] = await browser.pages();
 
   // Go to Google
-  await page.goto(url);
+  await page.goto(`${url}#${port_num}`);
 
-  console.log(`Opened ${url}!`);
+  console.log(`Opened ${url}! Port ${port_num}`);
 
   // Close the browser
   await browser.close();
