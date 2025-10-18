@@ -7,14 +7,14 @@ const port_num = process.argv[3] || "8082";
   const browser = await puppeteer.launch({
     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     headless: false, // run with a visible browser window
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox", `--proxy-server=https=127.0.0.1:${port_num}`]
   });
 
   // Use the first tab. Open a new window.
   const [page] = await browser.pages();
 
   // Go to Google
-  await page.goto(`${url}#${port_num}`);
+  await page.goto(url);
 
   console.log(`Opened ${url}! Port ${port_num}`);
 
